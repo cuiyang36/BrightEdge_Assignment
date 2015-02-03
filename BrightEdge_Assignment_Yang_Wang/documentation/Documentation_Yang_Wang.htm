@@ -1,0 +1,220 @@
+<!-- Name: Documentation_Yang_Wang.html -->
+<!-- Author: Yang Wang -->
+<!-- Version: 1.0 -->
+<!-- Email: wangyang19901026@gmail.com -->
+<!-- Function: The documentation of Walmart Text Scrapter -->
+<!-- Last Updated Time: 9/23/2014 20:30 -->
+<!-- Last Updated Content: Add "Preparation" Module -->
+
+<!DOCTYPE html>
+<html>
+<!-- the head of the documentation -->
+<head>
+<link rel="stylesheet" href="graphics/local.css" type="text/css">
+<title>Documentation_Yang_Wang</title>
+</head>
+<!-- end of head -->
+
+<!-- the content of the documentation -->
+<body lang=EN-US link=blue vlink=purple>
+<p class=Subhead1><a name=pagetop></a><a name="Documentation_Yang_Wang.htm"></a><a name="Documentation_Yang_Wang"></a>Documentation of Text Scraper Assignment</p>
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse'>
+	<tr style='height:21.0pt'>
+		<td width="33%" valign=top style='width:33.34%;border:solid windowtext 1.0pt;   padding:0in 5.4pt 0in 5.4pt;height:21.0pt'><p class=body>Language: Python 2.7</p></td>
+		<td width="33%" valign=top style='width:33.34%;border:solid windowtext 1.0pt;   border-left:none;padding:0in 5.4pt 0in 5.4pt;height:21.0pt'><p class=body>Author: Yang Wang</p></td>
+		<td width="33%" valign=top style='width:33.34%;border:solid windowtext 1.0pt;   border-left:none;padding:0in 5.4pt 0in 5.4pt;height:21.0pt'><p class=body>Complete Time: 9/23/2014</p></td>
+	</tr>
+</table>
+
+<!-- the headers of modules -->
+<p class=body align=center style='text-align:center'>&nbsp;</p>
+<p class=navtext><A href="#description">&#8226 Description</a></p>
+<p class=navtext><A href="#preparation">&#8226 Preparation</a></p>
+<p class=navtext><A href="#execution">&#8226 Execution</a></p>
+<p class=navtext><A href="#result">&#8226 Result</a></p>
+<p class=navtext><A href="#ideas">&#8226 Ideas</a></p>
+<p class=navtext><A href="#work_flow">&#8226 Work Flow</a></p>
+<p class=navtext><A href="#implementation">&#8226 Implementation</a></p>
+<p class=navtext><A href="#exception_handling">&#8226 Exception Handling</a></p>
+<p class=navtext><A href="#after_assignment">&#8226 After Assignment</a></p>
+<p class=navtext><A href="#references">&#8226 References</a></p>
+<!-- end of headers -->
+
+<!-- the Description module -->
+<p class=head2><a name=description></a>Description</p>
+<p class=body>
+Design and build a robust text scraper that will connect to a page on <b>www.walmart.com</b>
+and return about a given keyword. There are two queries will be performed:
+	<li> <b>Query 1</b>: Total number of results</li>
+	<li> <b>Query 2</b>: Results Object
+</p>
+<p class=body> There are six Python scripts in my submission folder after you unzip the source_code folder, their names and overall functions are:
+	<li><b>Scraper_main.py</b>: The main script you will directly call, dispatches other scripts(classes).</li>
+	<li><b>Scraper_input_validate.py</b>: The class that can check your inputs, throw exceptions if there are errors</li>
+	<li><b>Scraper_http_connect.py</b>: The class that sends request and gets response from the web server.</li>
+	<li><b>Scraper_parse_worker.py</b>: The class that parses the http response, core script.</li>
+<li><b>Scraper_result.py</b>: The class that encapsules the result as an object, stores important info.</li>
+	<li><b>Scraper_html_maker.py</b>: The class that makes temporary copy of results in html format, useful function I think.</li>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Description module -->
+
+<!-- the Preparation module -->
+<p class=head2><a name=preparation></a>Preparation</p>
+<p class=body>
+There are one library you need to install before running my script, 
+the recommanded method is to use pip,
+The relevant installation of pip could be found at: </p>
+<p class=body><b>pip.readthedocs.org/en/latest/installing.html</b>
+</p>
+<p class=body>
+After you successfully install pip, you can install the library 
+with the method after its name in your command line.
+<li> <b>BeautifulSoup</b>: sudo pip install beautifulsoup4</li>
+<p class=body>
+	Of course, please download and install Python 2.7 before execution.
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Preparation module -->
+
+<!-- the Execution module -->
+<p class=head2><a name=execution></a>Execution</p>
+<p class=body>
+After you cd into the source_code folder, you can type either of 
+the following command to call the text scraper:
+<li> python Scraper_main.py "keyword" </li> 
+<li> python Scraper_main.py "keyword" page number</li> 
+</p>
+<p class=body>
+And if you choose the second command format and the number 
+of results in selected page is more than 0, you will
+be asked whether to save the results as a html format copy. 
+If you choose "y", the results will be saved in a sub-
+folder of source_code folder named as "tmp_database", 
+and if you see another question that asks you whether to 
+overwrite the html file, that means you have saved a 
+relevant copy before with the same keyword and page number. If
+your answer is "y", the script will overwrite the odd one, 
+or the script will create a new file with the new name: 
+"old file prefix name + _1.html"
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Execution module -->
+
+<!-- the Result module -->
+<p class=head2><a name=result></a>Result</p>
+<p class=body>
+If you choose the first type, you will see the following content on the screen:
+"The Number Of Results: XXXX" and at the same time, the main function will
+return this value. Of course, you will see other instructive information on the
+screen, I preserve them since they are really important, you can delete them as 
+you want. The information includes: The http connect info, the http response info
+ and the exceptions that could be thrown out.
+</p>
+<p class=body>
+And if you choose the second input format, the contents shown on the screen could be 
+more colorful, for example, If you type in: <b>python Scraper_main.py "digital cameras" 2</b>, 
+you will see the following picture:
+</p>
+<p class=body align=center style='text-align:center'><img src="graphics/result_1.png" alt="" border="0" /></p>
+<p class=body>
+Then if you choose "y" to saving copy question, you will see the following page in "*//tmp_database//digital camera#2.html"
+</p>
+<p class=body align=center style='text-align:center'><img src="graphics/result_2.png" alt="" border="0" /></p>
+<p class=body>
+For the product name, I preserved the whole name and for the price information, I did the same thing,
+because I'm not sure what we are going to do with the price result, like, do we need to calculate
+ how many products are not avaliable now or what the average price is if the price of the product is given
+ in a range format. I think I can parse in more details after I talk more with the project manager.
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Result module -->
+
+<!-- the Idea module -->
+<p class=head2><a name=ideas></a>Ideas</p>
+<p class=body>
+At the first glance of this assignment, I wanted to use Java to solve it since I just finished a HTTP communicator
+program in Java for my cloud computing course, and I have the code on the shelf. But I thought parsing may not be
+a strong feature for Java and I would need a bunch of testing cases for handling exceptions. On the other hand, I never
+learn how to use Python module to connect with the web server before, so I decided to challenge myself and learn something
+new.
+</p>
+<p class=body>
+Then I thought my classes should be divided into the following parts:
+	<li> A dispatcher part, can dispatch different classes to satisfying different needs.</li>
+	<li> A part can validate the input, check whether the input parameters are valid, can throw exceptions if not.</li>
+	<li> A part can set up connection with the web server, here, I choose the "urllib" module in Python.</li>
+	<li> A part can act as a parser for different modes, I choose the "beautifulSoup" module since it's a powerful tool based on tag parsing.</li>
+	<li> A part can used as a result object, it can communicate with parsing part, like, if we find a satisfied result on a selected page, we can
+	immediately create a result object and store any useful information in it.</li>
+	<li> A optional part can save the results of we get, it's just like a search log or database, we can review or update them as we want.</li>
+</p>
+<p class=body>
+So after I made sure the parts I needed to focus on, I began to search information about the methods of the modules in Python's online documentation.
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Idea module -->
+
+
+<!-- the Work Flow module -->
+<p class=head2><a name=work_flow></a>Work Flow</p>
+<p class=body>
+The work flow of my design could be shown as following picture:
+</p>
+<p class=body align=center style='text-align:center'><img src="graphics/work_flow.PNG" alt="" border="0" /></p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Work Flow module -->
+
+<!-- the Implementation module -->
+<p class=head2><a name=implementation></a>Implementation</p>
+<p class=body>
+In the parsing process, beside using the tag searching method in "beautifulSoup" module, I see the "re" module and iteration method of "beautifulSoup" module as my left and right arms. After reviewing the structure of Walmart searching website for a really long time, I'm sure I have found something general, like the number of total results or results in current page can be found in class "result-summary-container", and all the individual product information can be found in class "js-tile tile-landscape". Moreover, the product title information can be found in class "item-price-container" and 
+the price information will be found in class "js-product-title". 
+</p>
+<p class=body>
+After knowing this, for the first mode, we just search for the "result-summary-container" class tag, then traverse all the content in it to see if there 
+is a match for our compiled pattern. If there is a match, we can extract the number information by using group() method.
+</p>
+<p class=body>
+However, if we choose the second mode, we will need more parsing work if the number of results in current page is not 0. By using the find_next() method,
+we can iteratively find all the product container, then for each product container, we can continually find price container and title container by using
+this method. There is a little trick when we want to extract texts from price or title container. That is, if there is tag like "&lt;div&gt;" in tag_object.contents, we cannot use string method, my solution is to write a function called "combineString()" that can recursively combine valid text in a container, like, if hasattr(tag_object, "contents") method is True, the tag_object can be divided again until we find the smallest structure and use 
+string method.
+</p>
+<p class=body>
+Overall, the logical flow of implementation of parsing can be shown as the following picture:
+</p>
+<p class=body align=center style='text-align:center'><img src="graphics/implementation.PNG" alt="" border="0" /></p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Implementation module -->
+
+<!-- the Exception Handling module -->
+<p class=head2><a name=exception_handling></a>Exception Handling</p>
+<p class=body>
+In my program, I try to handle as more exceptions as I can to avoid crashing. For example, in the http connection part,
+I can handle HTTPError exception, URLError exception, and I set the trial time to be 3, if we fail, we will get a connection exception.
+Maybe so many exception-handling parts seeme to be a little redundency to the program, but I think avoiding crashing is the most important
+and if I can be given more time, I will be able to sum up the exception cases.
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Exception Handling module -->
+
+<!-- the After Assignment module -->
+<p class=head2><a name=after_assignment></a>After Assignment</p>
+<p class=body>
+I think it's a really cool assignment, I will click "like" button for this! In the problem-solving process, I learnt how to separate my thought and my work. Then my work will be modular and more effective. On the other hand, I learnt the web server connection and html parsing methods in Python which is also an awesome thing. Paring is important, just like the infomation extraction from the big data. I think I'm really interested in this field and want to learn more about it.
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the After Assignment module -->
+
+<!-- the Reference module -->
+<p class=head2><a name=references></a>References</p>
+<p class=body>
+	<li><b>https://docs.python.org/2/library/urllib.htm</b>, an urllib module teaching page.</li>
+	<li><b>http://www.crummy.com/software/BeautifulSoup/bs4/doc/</b>, a BeautifulSoup module teaching page.</li>
+</p>
+<p class=navtext><A href="#pagetop">Top</a></p>
+<!-- end of the Reference module -->
+
+</body>
+</html>
